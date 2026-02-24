@@ -1,0 +1,25 @@
+[project]
+name = "1fichier-dl"
+version = "2.3.0"
+#requires-python = "==3.11.4"
+requires-python = "==3.14.3"
+dependencies = [
+    "lxml==6.0.2",
+#    "curl_cffi==0.5.7",
+    "curl_cffi",
+    "urllib3==2.0.4",
+    "requests",
+    "requests[socks]",
+    "PyQt5",
+    "beautifulsoup4",
+    "pyqtdarktheme",
+    "pyinstaller",
+    "pywebio",
+    "pyqt5-qt5==5.15.15 ; platform_system != 'Windows'",
+    "pyqt5-qt5==5.15.2 ; platform_system == 'Windows'",
+]
+
+[tool.uv]
+#required-environments = [
+#    "sys_platform == 'win' and platform_machine == 'amd64'",
+#]
