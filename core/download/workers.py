@@ -112,6 +112,8 @@ class FilterWorker(QRunnable):
                                     no_password = QStandardItem('No password')
                                     no_password.setFlags(data.flags() & ~Qt.ItemIsEditable)
                                     row.append(no_password)
+                                
+                                row.append(QStandardItem(link))  # Link column (hidden)
 
                                 self.signals.download_signal.emit(
                                     row, link, True, self.dl_name, self.progress)
@@ -143,11 +145,14 @@ class FilterWorker(QRunnable):
                                         no_password = QStandardItem('No password')
                                         no_password.setFlags(data.flags() & ~Qt.ItemIsEditable)
                                         row.append(no_password)
+                                    
+                                    row.append(QStandardItem(link))  # Link column (hidden)
 
                                     self.signals.download_signal.emit(
                                         row, link, True, self.dl_name, self.progress)
                                     if self.cached_download:
                                         self.cached_downloads.remove(self.cached_download)
+                        logging.debug("row : " + str(row))
                     except Exception as e:
                         logging.error(f"Error processing link {link}: {e}")
                         continue

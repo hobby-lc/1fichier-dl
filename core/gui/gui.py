@@ -245,7 +245,7 @@ class GuiBehavior:
     def update_receive_signal(self, data, items):
         '''
         Update download data.
-        items = [File Name, Size, Down Speed, Progress, Pass]
+        items = [File Name, Size, Down Speed, Progress, Pass, Link]
         '''
         if data and isinstance(data, list) and isinstance(items, list):
             if not PyQt5.sip.isdeleted(data[2]):
@@ -434,7 +434,7 @@ class Gui:
 
         # Table initialization code
         self.table = QTableView()
-        headers = ['Name', 'Size', 'Status', 'Proxy server', 'Down Speed', 'Progress', 'Password']
+        headers = ['Name', 'Size', 'Status', 'Proxy server', 'Down Speed', 'Progress', 'Password', 'Link']
         self.table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContentsOnFirstShow)
         self.table.horizontalHeader().setStretchLastSection(True)  # Disable last column expansion
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
