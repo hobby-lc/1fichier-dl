@@ -667,7 +667,7 @@ class Gui:
         form_layout_c.addRow(self.timeout_input)
 
         # Proxy settings
-        form_layout_c.addRow(QLabel('Enter proxy list directly:'))
+        form_layout_c.addRow(QLabel('Enter proxy list directly (or RP for random proxies):'))
         self.proxy_settings_input = QLineEdit()
         if self.actions.settings is not None:
             self.proxy_settings_input.setText(self.actions.settings[3])

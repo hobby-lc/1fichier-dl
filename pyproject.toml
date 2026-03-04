@@ -17,6 +17,7 @@ dependencies = [
     "pywebio",
     "pyqt5-qt5==5.15.15 ; platform_system != 'Windows'",
     "pyqt5-qt5==5.15.2 ; platform_system == 'Windows'",
+    "proxy_randomizer"
 ]
 
 [tool.uv]

@@ -8,6 +8,7 @@ import lxml.html
 import urllib3
 # SSL Ignore warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+from proxy_randomizer import RegisteredProviders
 
 FIRST_RUN = True
 SOCKS5_PROXY_TXT_API = 'https://raw.githubusercontent.com/leinad4mind/1fichier-dl/main/socks5_proxy_list.txt'
@@ -21,7 +22,10 @@ def get_proxies(settings):
     '''
 
     if settings:
-        r_proxies = requests.get(settings).text.splitlines()
+        if settings == "RP":
+            r_proxies = load_random_proxies()
+        else:
+            r_proxies = requests.get(settings).text.splitlines()
     else:
         '''
         Socks5, https proxy server list in array form
@@ -30,6 +34,16 @@ def get_proxies(settings):
 
     return r_proxies
 
+# Method to load random proxies using the proxy_randomizer library,
+# that returned proxys are more reliable than those from github list. 
+def load_random_proxies():
+    proxy_list = []
+    rp = RegisteredProviders()
+    rp.parse_providers()
+    for proxy in rp.proxies:
+        proxy_list.append({"https": proxy.get_proxy()})
+    logging.debug(f'Total valid proxies loaded: {len(proxy_list)}')
+    return proxy_list
 
 def get_proxies_from_api(api_url):
     proxy_list = []
